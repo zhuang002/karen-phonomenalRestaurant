@@ -54,9 +54,13 @@ def is_removable(parent, current):
 
 
 def remove_unneeded(root):
+    removable_subnodes = []
     for subnode in root.connected:
         if is_removable(root, subnode):
-            root.connected.remove(subnode)
+            removable_subnodes.append(subnode)
+    for sub in removable_subnodes:
+        root.connected.remove(sub)
+    n -= len(removable_subnodes)
     return root, n-1
 
 
